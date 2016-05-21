@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.13.4",
-    "mdi": "^1.6.50"
+    "mdi": "^1.6.50",
+    "bower": "1.7.9"
   }
 }
