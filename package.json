@@ -1,0 +1,15 @@
+{
+  "name": "classifieds",
+  "version": "1.0.0",
+  "description": "test app",
+  "engines": {
+    "node": "6.1.0",
+    "npm": "3.8.6"
+  },
+  "author": "vk",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.4",
+    "mdi": "^1.6.50"
+  }
+}

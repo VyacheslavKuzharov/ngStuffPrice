@@ -1,0 +1,76 @@
+<md-toolbar>
+    <div class="md-toolbar-tools">
+        <p><strong>ngStuffPrice</strong></p>
+
+        <md-button ng-click="stuffCtrl.openSidebar()">
+            <md-icon class="mdi mdi-plus-circle"></md-icon>
+            New Post
+        </md-button>
+
+        <md-button ng-click="showFilters = true">
+            <md-icon class="mdi mdi-magnify"></md-icon>
+            Filter
+        </md-button>
+
+    </div>
+</md-toolbar>
+
+<div class="filters" layout="row" layout-align="center center" ng-show="showFilters">
+    <md-input-container>
+        <label>Enter Search Term</label>
+        <input type="text" ng-model="productsFilter">
+    </md-input-container>
+
+    <md-input-container>
+        <label>Category</label>
+        <md-select ng-model="category">
+            <md-option ng-repeat="category in stuffCtrl.categories" value="{{ category }}">{{ category }}</md-option>
+        </md-select>
+    </md-input-container>
+
+    <md-input-container>
+        <md-button class="md-warn" ng-click="category = ''; productsFilter = '' ">Clear</md-button>
+    </md-input-container>
+
+</div>
+
+<ui-view></ui-view>
+
+<md-content class="md-padding" layout="row" layout-wrap>
+    <md-card ng-repeat="product in stuffCtrl.products |
+                                filter: productsFilter |
+                                filter: category" flex="30"
+             class="products">
+        <img ng-src="{{ product.image }}" alt="">
+        <md-card-content>
+
+            <div class="product-info" ng-show="!showContact">
+                <h2 class="md-title">{{ product.title }}</h2>
+                <h2>{{ product.posted | date: 'longDate' }}</h2>
+                <h3>{{ product.price | currency }}</h3>
+                <p>{{ product.description }}</p>
+            </div>
+
+            <div class="product-contact" ng-show="showContact">
+                <p> <md-icon class="mdi mdi-account"></md-icon> {{ product.contact.name }}</p>
+                <p> <md-icon class="mdi mdi-phone"></md-icon> {{ product.contact.phone }}</p>
+                <p> <md-icon class="mdi mdi-email"></md-icon> {{ product.contact.email }}</p>
+            </div>
+
+            <div layout="row">
+                <md-button ng-click="showContact = true" ng-show="!showContact">Contact</md-button>
+                <md-button ng-click="showContact = false" ng-show="showContact">Details</md-button>
+                <md-button ng-click="showAdmin = true" ng-show="!showAdmin">Admin</md-button>
+                <md-button ng-click="showAdmin = false" ng-show="showAdmin">Close</md-button>
+            </div>
+
+            <div class="admin-product" ng-if="showAdmin">
+                <h3>Admin</h3>
+                <div layout="row">
+                    <md-button class="md-primary" ng-click="stuffCtrl.editProduct(product)">Edit</md-button>
+                    <md-button class="md-warn" ng-click="stuffCtrl.deleteProduct($event, product)">Delete</md-button>
+                </div>
+            </div>
+        </md-card-content>
+    </md-card>
+</md-content>

@@ -1,0 +1,22 @@
+{
+  "name": "Classifieds",
+  "authors": [
+    "Vyachaslav Kuzharov <marhuz.61@gmail.com>"
+  ],
+  "description": "test",
+  "main": "index.html",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.5.5",
+    "angular-material": "^1.0.8",
+    "angular-ui-router": "^0.3.0"
+  }
+}

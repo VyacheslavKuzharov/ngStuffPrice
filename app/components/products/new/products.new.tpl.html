@@ -1,0 +1,32 @@
+<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-open="stuffCtrl.sidenaveOpen">
+    <md-toolbar>
+        <h1 class="md-toolbar-tools">New Stuff</h1>
+    </md-toolbar>
+    <md-content layout-padding>
+        <form>
+            <md-input-container>
+                <label for="title">Title</label>
+                <input type="text" id="title" ng-model="product.title" md-autofocus>
+            </md-input-container>
+            <md-input-container>
+                <label for="price">Price</label>
+                <input type="text" id="price" ng-model="product.price">
+            </md-input-container>
+            <md-input-container>
+                <label for="description">Description</label>
+                <textarea type="text" id="description" ng-model="product.description">
+                </textarea>
+            </md-input-container>
+            <md-input-container>
+                <label for="image">Image Link</label>
+                <input type="text" id="image" ng-model="product.image">
+            </md-input-container>
+            <md-button ng-click="stuffCtrl.saveProduct(product)" class="md-primary">
+                Save
+            </md-button>
+            <md-button ng-click="stuffCtrl.closeSidebar()" class="md-warn">
+                Cancel
+            </md-button>
+        </form>
+    </md-content>
+</md-sidenav>
