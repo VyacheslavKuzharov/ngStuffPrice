@@ -6,6 +6,9 @@
     "node": "6.1.0",
     "npm": "3.8.6"
   },
+  "scripts": {
+    "postinstall": "bower install"
+  },
   "author": "vk",
   "license": "ISC",
   "dependencies": {
