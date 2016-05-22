@@ -28,7 +28,10 @@ angular
                 url: '/new',
                 templateUrl: 'app/components/products/new/products.new.tpl.html',
                 controller: 'newProductsController',
-                controllerAs: 'stuffCtrl'
+                controllerAs: 'stuffCtrl',
+                params: {
+                    categories: null
+                }
             })
             .state('products.edit', {
                 url: '/:id/edit',

@@ -5,9 +5,9 @@
         .module('ngStuffPrice')
         .controller('productsController', productsController);
 
-    productsController.$inject = ['$scope', '$http', '$mdSidenav', '$mdToast', '$mdDialog', '$state', 'product'];
+    productsController.$inject = ['$scope', '$http', '$mdSidenav', '$mdToast', '$mdDialog', '$state', 'productService'];
 
-    function productsController($scope, $http, $mdSidenav, $mdToast, $mdDialog, $state, product) {
+    function productsController($scope, $http, $mdSidenav, $mdToast, $mdDialog, $state, productService) {
         var vm = this;
         vm.openSidebar = openSidebar;
         vm.editProduct = editProduct;
@@ -18,18 +18,21 @@
         vm.categories;
 
         $scope.$on('newProduct', function (event, product) {
-            product.id = vm.products.length + 1;
-            vm.products.push(product);
+            productService.storeProduct(product).then(function (response) {
+                vm.products.unshift(response.data);
+            });
             showToast('Saved!')
         });
 
-        product.getProducts().then(function (response) {
+        productService.getProducts().then(function (response) {
             vm.products = response.data;
             vm.categories = getCategories(vm.products);
         });
 
         function openSidebar() {
-            $state.go('products.new')
+            $state.go('products.new', {
+                categories: vm.categories
+            })
         }
         
         function editProduct(product) {
@@ -46,6 +49,8 @@
                 .cancel('no')
                 .targetEvent(event);
             $mdDialog.show(confirm).then(function () {
+                productService.destroyProduct(product.id);
+
                 var index = vm.products.indexOf(product);
                 vm.products.splice(index, 1);
             }, function () {

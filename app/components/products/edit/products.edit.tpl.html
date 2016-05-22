@@ -21,7 +21,7 @@
                 <label for="image">Image Link</label>
                 <input type="text" id="image" ng-model="stuffCtrl.product.image">
             </md-input-container>
-            <md-button ng-click="stuffCtrl.saveEdit()" class="md-primary">
+            <md-button ng-click="stuffCtrl.saveEdit(stuffCtrl.product)" class="md-primary">
                 Save Edit
             </md-button>
             <md-button ng-click="stuffCtrl.closeSidebar()" class="md-warn">

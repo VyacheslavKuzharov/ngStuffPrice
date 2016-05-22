@@ -21,6 +21,14 @@
                 <label for="image">Image Link</label>
                 <input type="text" id="image" ng-model="product.image">
             </md-input-container>
+            <md-input-container>
+                <label>Categories</label>
+                <md-select ng-model="product.selectedCategories" multiple>
+                    <md-option ng-repeat="category in stuffCtrl.categories" ng-value="category">{{category}}</md-option>
+                </md-select>
+            </md-input-container>
+
+
             <md-button ng-click="stuffCtrl.saveProduct(product)" class="md-primary">
                 Save
             </md-button>

@@ -1,1 +1,1 @@
-https://stuffprice-front.herokuapp.com
+Heroku: https://stuffprice-front.herokuapp.com

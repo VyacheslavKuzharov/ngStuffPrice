@@ -5,9 +5,9 @@
         .module('ngStuffPrice')
         .controller('editProductsController', editProductsController);
 
-    editProductsController.$inject = ['$scope', '$mdSidenav', '$mdDialog', '$timeout', '$state', 'product'];
+    editProductsController.$inject = ['$scope', '$mdSidenav', '$mdDialog', '$timeout', '$state', 'productService'];
 
-    function editProductsController($scope, $mdSidenav, $mdDialog, $timeout, $state, product) {
+    function editProductsController($scope, $mdSidenav, $mdDialog, $timeout, $state, productService) {
         console.log($state.params)
         var vm = this;
         vm.closeSidebar = closeSidebar;
@@ -30,7 +30,10 @@
             vm.sidenaveOpen = false;
         }
 
-        function saveEdit() {
+        function saveEdit(product) {
+
+            product.user_id = 1;
+            productService.editProduct(product)
             vm.sidenaveOpen = false;
         }
 

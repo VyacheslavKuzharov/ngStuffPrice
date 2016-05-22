@@ -2,17 +2,32 @@
     'use strict';
     angular
         .module('ngStuffPrice')
-        .factory('product', product);
+        .factory('productService', productService);
 
-    product.$inject = ['$http', 'CONFIG'];
+    productService.$inject = ['$http', 'CONFIG'];
 
-    function product ($http, CONFIG) {
+    function productService ($http, CONFIG) {
         return {
-            getProducts: getStuff
+            getProducts: getStuff,
+            storeProduct: saveStuff,
+            editProduct: editStuff,
+            destroyProduct: destroyStuff
         };
 
         function getStuff() {
-           return $http.get(CONFIG.APIHost)
+           return $http.get(CONFIG.APIHost + '/products')
+        }
+
+        function saveStuff(product) {
+            return $http.post(CONFIG.APIHost + '/products', {product: product})
+        }
+
+        function editStuff(product) {
+            return $http.put(CONFIG.APIHost + '/products/' + product.id, {product: product})
+        }
+
+        function destroyStuff(id) {
+            return $http.delete(CONFIG.APIHost + '/products/' + id)
         }
     }
 
