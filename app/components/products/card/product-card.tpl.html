@@ -1,0 +1,36 @@
+<md-card ng-repeat="product in products |
+                                filter: productsFilter |
+                                filter: category" flex="30"
+         class="products">
+    <img ng-src="{{ product.image }}" alt="">
+    <md-card-content>
+
+        <div class="product-info" ng-show="!showContact">
+            <h2 class="md-title">{{ product.title }}</h2>
+            <h2>{{ product.posted | date: 'longDate' }}</h2>
+            <h3>{{ product.price | currency }}</h3>
+            <p>{{ product.description }}</p>
+        </div>
+
+        <div class="product-contact" ng-show="showContact">
+            <p> <md-icon class="mdi mdi-account"></md-icon> {{ product.contact.name }}</p>
+            <p> <md-icon class="mdi mdi-phone"></md-icon> {{ product.contact.phone }}</p>
+            <p> <md-icon class="mdi mdi-email"></md-icon> {{ product.contact.email }}</p>
+        </div>
+
+        <div layout="row">
+            <md-button ng-click="showContact = true" ng-show="!showContact">Contact</md-button>
+            <md-button ng-click="showContact = false" ng-show="showContact">Details</md-button>
+            <md-button ng-click="showAdmin = true" ng-show="!showAdmin">Admin</md-button>
+            <md-button ng-click="showAdmin = false" ng-show="showAdmin">Close</md-button>
+        </div>
+
+        <div class="admin-product" ng-if="showAdmin">
+            <h3>Admin</h3>
+            <div layout="row">
+                <md-button class="md-primary" ng-click="stuffCtrl.editProduct(product)">Edit</md-button>
+                <md-button class="md-warn" ng-click="stuffCtrl.deleteProduct($event, product)">Delete</md-button>
+            </div>
+        </div>
+    </md-card-content>
+</md-card>

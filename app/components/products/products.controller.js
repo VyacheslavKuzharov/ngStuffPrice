@@ -1,20 +1,17 @@
 (function () {
-    "use strict";
+    'use strict';
 
     angular
         .module('ngStuffPrice')
         .controller('productsController', productsController);
 
-    productsController.$inject = ['$scope', '$http', '$mdSidenav', '$mdToast', '$mdDialog', '$state', 'productService'];
+    productsController.$inject = ['$scope', '$mdSidenav', '$mdToast', '$mdDialog', '$state', 'productService'];
 
-    function productsController($scope, $http, $mdSidenav, $mdToast, $mdDialog, $state, productService) {
+    function productsController($scope, $mdSidenav, $mdToast, $mdDialog, $state, productService) {
         var vm = this;
         vm.openSidebar = openSidebar;
-        vm.editProduct = editProduct;
-        vm.deleteProduct = deleteProduct;
 
         vm.products;
-        vm.product;
         vm.categories;
 
         $scope.$on('newProduct', function (event, product) {
@@ -33,29 +30,6 @@
             $state.go('products.new', {
                 categories: vm.categories
             })
-        }
-        
-        function editProduct(product) {
-            $state.go('products.edit', {
-                id: product.id,
-                product: product
-            });
-        }
-
-        function deleteProduct(event, product) {
-            var confirm = $mdDialog.confirm()
-                .title('Are you shure?')
-                .ok('yes')
-                .cancel('no')
-                .targetEvent(event);
-            $mdDialog.show(confirm).then(function () {
-                productService.destroyProduct(product.id);
-
-                var index = vm.products.indexOf(product);
-                vm.products.splice(index, 1);
-            }, function () {
-
-            });
         }
         
         function showToast(message) {

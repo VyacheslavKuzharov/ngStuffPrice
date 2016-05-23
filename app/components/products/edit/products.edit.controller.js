@@ -8,7 +8,6 @@
     editProductsController.$inject = ['$scope', '$mdSidenav', '$mdDialog', '$timeout', '$state', 'productService'];
 
     function editProductsController($scope, $mdSidenav, $mdDialog, $timeout, $state, productService) {
-        console.log($state.params)
         var vm = this;
         vm.closeSidebar = closeSidebar;
         vm.saveEdit = saveEdit;

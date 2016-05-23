@@ -28,13 +28,14 @@
                 </md-select>
             </md-input-container>
 
-
-            <md-button ng-click="stuffCtrl.saveProduct(product)" class="md-primary">
-                Save
-            </md-button>
-            <md-button ng-click="stuffCtrl.closeSidebar()" class="md-warn">
-                Cancel
-            </md-button>
+            <div class="actions" layout="row">
+                <md-button ng-click="stuffCtrl.saveProduct(product)" class="md-primary">
+                    Save
+                </md-button>
+                <md-button ng-click="stuffCtrl.closeSidebar()" class="md-warn">
+                    Cancel
+                </md-button>
+            </div>
         </form>
     </md-content>
 </md-sidenav>

@@ -18,6 +18,18 @@ angular
         // $urlRouterProvider.when('', '/');
 
         $stateProvider
+            .state('authentication', {
+                url: '/',
+                templateUrl: 'app/components/authentication/register/signup.tpl.html'
+            })
+            // .state('authentication', {
+            //     url: '/login',
+            //     templateUrl: 'app/components/authentication/register/login.tpl.html'
+            // })
+            // .state('authentication', {
+            //     url: '/forgot_password',
+            //     templateUrl: 'app/components/authentication/register/password.tpl.html'
+            // })
             .state('products', {
                 url: '/products',
                 templateUrl: 'app/components/products/products.tpl.html',
