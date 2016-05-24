@@ -1,0 +1,44 @@
+<md-dialog class="login-dialog" aria-label="Login" ng-cloak>
+    <form name="loginForm">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Login</h2>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content layout-padding>
+            <div class="md-dialog-content">
+                <md-input-container class="md-block">
+                    <label>Email:</label>
+                    <input ng-model="user_credentials.email" required>
+                </md-input-container>
+
+                <md-input-container class="md-block">
+                    <label>Password:</label>
+                    <input ng-model="user_credentials.password" type="password" required>
+                </md-input-container>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row" layout-align="center center">
+            <md-button class="md-primary"
+                       aria-label="OK"
+                       ng-click="loginCtrl.loginSubmit(user_credentials)">
+                OK
+            </md-button>
+            <md-button type="button" ng-click="loginCtrl.closeLogin()"
+                       aria-label="Cancel">
+                Cancel
+            </md-button>
+        </md-dialog-actions>
+
+        <md-dialog-actions layout="row" layout-align="center center">
+            <div layout="row" layout-align="center center">
+                <p>Don't have an account?</p>
+            </div>
+            <md-button class="md-primary" ng-click="loginCtrl.registerOpen($event)">
+               Sign Up
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

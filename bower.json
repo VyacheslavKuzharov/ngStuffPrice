@@ -17,6 +17,12 @@
   "dependencies": {
     "angular": "1.5.5",
     "angular-material": "^1.0.8",
-    "angular-ui-router": "^0.3.0"
+    "angular-ui-router": "^0.3.0",
+    "bower": "*",
+    "install": "^1.0.4",
+    "angular-messages": "^1.5.5",
+    "angular-aria": "^1.5.5",
+    "a0-angular-storage": "^0.0.15",
+    "angular-jwt": "^0.0.9"
   }
 }

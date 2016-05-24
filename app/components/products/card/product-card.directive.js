@@ -18,8 +18,7 @@
         };
 
         function productCardController($scope, $timeout, $mdDialog, $mdToast, $state, productService) {
-
-
+            
             var vm = this;
             vm.editProduct = editProduct;
             vm.deleteProduct = deleteProduct;
@@ -30,6 +29,7 @@
 
             function editProduct(product) {
                 $state.go('products.edit', {
+                    id: product.id,
                     product: product
                 });
             }

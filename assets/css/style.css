@@ -22,3 +22,9 @@ button .material-icons {
 }
 
 /* --ngAnimation-- */
+
+
+md-dialog.login-dialog{
+    max-width: 100%;
+    max-height: 115%;
+}

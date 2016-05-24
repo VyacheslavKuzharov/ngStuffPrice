@@ -1,21 +1,10 @@
 <md-toolbar>
-    <div class="md-toolbar-tools">
-        <p><strong>ngStuffPrice</strong></p>
-
-        <md-button ng-click="stuffCtrl.openSidebar()">
-            <md-icon class="mdi mdi-plus-circle"></md-icon>
-            New Post
-        </md-button>
-
-        <md-button ng-click="showFilters = true">
-            <md-icon class="mdi mdi-magnify"></md-icon>
-            Filter
-        </md-button>
-
-    </div>
+    <toolbar categories="stuffCtrl.categories"
+             show-filters="stuffCtrl.showFilters()">
+    </toolbar>
 </md-toolbar>
 
-<div class="filters" layout="row" layout-align="center center" ng-show="showFilters">
+<div class="filters" layout="row" layout-align="center center" ng-show="stuffCtrl.filtersOpen">
     <md-input-container style="margin-top: 42px;">
         <label>Enter Search Term</label>
         <input type="text" ng-model="productsFilter">

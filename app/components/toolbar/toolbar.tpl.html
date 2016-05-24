@@ -1,0 +1,28 @@
+<div class="md-toolbar-tools">
+    <p><strong>ngStuffPrice</strong></p>
+
+    <md-button ng-click="toolbarCtrl.openSidebar()">
+        <md-icon class="mdi mdi-plus-circle"></md-icon>
+        New Post
+    </md-button>
+
+    <md-button ng-click="showFilters()">
+        <md-icon class="mdi mdi-magnify"></md-icon>
+        Filter
+    </md-button>
+
+    <span flex></span>
+
+    <md-button aria-label="Login"
+               ng-click="toolbarCtrl.openLogin($event)"
+               ng-if="!toolbarCtrl.isCurrentUser()">
+        Login
+    </md-button>
+
+    <md-button aria-label="Logout"
+               ng-click="toolbarCtrl.logout()"
+               ng-if="toolbarCtrl.isCurrentUser()">
+        Logout
+    </md-button>
+
+</div>

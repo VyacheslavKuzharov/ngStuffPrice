@@ -9,7 +9,7 @@
 
     function productsController($scope, $mdSidenav, $mdToast, $mdDialog, $state, productService) {
         var vm = this;
-        vm.openSidebar = openSidebar;
+        vm.showFilters = showFilters;
 
         vm.products;
         vm.categories;
@@ -26,10 +26,8 @@
             vm.categories = getCategories(vm.products);
         });
 
-        function openSidebar() {
-            $state.go('products.new', {
-                categories: vm.categories
-            })
+        function showFilters() {
+            vm.filtersOpen = true;
         }
         
         function showToast(message) {

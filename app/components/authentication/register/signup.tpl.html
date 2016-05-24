@@ -1,48 +1,49 @@
-<div id="login-page" class="row">
-    <div class="col s12 z-depth-6 card-panel">
-        <form class="login-form">
-            <div class="row">
-                <div class="input-field col s12 center">
-                    <img src="http://w3lessons.info/logo.png" alt="" class="responsive-img valign profile-image-login">
-                    <p class="center login-form-text">W3lessons - Material Design SignUp Form</p>
-                </div>
+<md-dialog class="login-dialog" aria-label="Register" ng-cloak>
+    <form name="registerForm">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Register</h2>
             </div>
-            <div class="row margin">
-                <div class="input-field col s12">
-                    <i class="mdi-social-person-outline prefix"></i>
-                    <input id="username" type="text" class="validate">
-                    <label for="username" class="center-align">Username</label>
-                </div>
+        </md-toolbar>
+
+        <md-dialog-content layout-padding>
+            <div class="md-dialog-content">
+                <md-input-container class="md-block">
+                    <label>Email:</label>
+                    <input ng-model="user_credentials.email" required>
+                </md-input-container>
+
+                <md-input-container class="md-block">
+                    <label>Password:</label>
+                    <input ng-model="user_credentials.password" type="password" required>
+                </md-input-container>
+
+                <md-input-container class="md-block">
+                <label>Password Confirmation:</label>
+                <input ng-model="user_credentials.password_confirmation" type="password" required>
+                </md-input-container>
             </div>
-            <div class="row margin">
-                <div class="input-field col s12">
-                    <i class="mdi-communication-email prefix"></i>
-                    <input id="email" type="email" class="validate">
-                    <label for="email" class="center-align">Email</label>
-                </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row" layout-align="center center">
+            <md-button class="md-primary"
+                       aria-label="OK"
+                       ng-click="registerCtrl.registerSubmit(user_credentials)">
+                OK
+            </md-button>
+            <md-button type="button" ng-click="registerCtrl.closeRegister()"
+                       aria-label="Cancel">
+                Cancel
+            </md-button>
+        </md-dialog-actions>
+
+        <md-dialog-actions layout="row" layout-align="center center">
+            <div layout="row" layout-align="center center">
+                <p>Already have an account?</p>
             </div>
-            <div class="row margin">
-                <div class="input-field col s12">
-                    <i class="mdi-action-lock-outline prefix"></i>
-                    <input id="password" type="password" class="validate">
-                    <label for="password">Password</label>
-                </div>
-            </div>
-            <div class="row margin">
-                <div class="input-field col s12">
-                    <i class="mdi-action-lock-outline prefix"></i>
-                    <input id="password-again" type="password">
-                    <label for="password-again">Re-type password</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <a href="register.html" class="btn waves-effect waves-light col s12">Register Now</a>
-                </div>
-                <div class="input-field col s12">
-                    <p class="margin center medium-small sign-up">Already have an account? <a href="login.html">Login</a></p>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
+            <md-button class="md-primary" ng-click="registerCtrl.loginOpen($event)">
+                Sign In
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
