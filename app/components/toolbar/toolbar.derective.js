@@ -21,7 +21,7 @@
             vm.openSidebar = openSidebar;
             vm.openLogin = openLogin;
             vm.logout = logout;
-            vm.isAuthenticated = isAuthenticated;
+            vm.authService = authService;
 
             $timeout(function () {
                 vm.categories = $scope.categories
@@ -52,14 +52,8 @@
                         store.remove('id_token');
                         $location.path('/');
                     }
-                    console.log(response)
                 })
             }
-
-            function isAuthenticated() {
-               return authService.isAuth()
-            }
-            
         }
     }
 })();

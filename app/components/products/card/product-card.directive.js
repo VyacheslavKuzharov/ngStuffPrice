@@ -17,11 +17,12 @@
             controllerAs: 'stuffCtrl'
         };
 
-        function productCardController($scope, $timeout, $mdDialog, $mdToast, $state, productService) {
+        function productCardController($scope, $timeout, $mdDialog, $mdToast, $state, productService, authService) {
             
             var vm = this;
             vm.editProduct = editProduct;
             vm.deleteProduct = deleteProduct;
+            vm.authService = authService
 
             $timeout(function () {
                 vm.products = $scope.products

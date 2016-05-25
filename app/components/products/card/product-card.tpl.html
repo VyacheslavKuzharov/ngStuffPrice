@@ -26,10 +26,13 @@
         </div>
 
         <div class="admin-product" ng-if="showAdmin">
-            <h3>Admin</h3>
-            <div layout="row">
+            <div layout="row" ng-if="stuffCtrl.authService.isAuth()">
                 <md-button class="md-primary" ng-click="stuffCtrl.editProduct(product)">Edit</md-button>
                 <md-button class="md-warn" ng-click="stuffCtrl.deleteProduct($event, product)">Delete</md-button>
+            </div>
+
+            <div layout="row" ng-if="!stuffCtrl.authService.isAuth()">
+                <h3>Login to edit card</h3>
             </div>
         </div>
     </md-card-content>
