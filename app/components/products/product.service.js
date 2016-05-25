@@ -12,6 +12,7 @@
             storeProduct: saveStuff,
             editProduct: editStuff,
             destroyProduct: destroyStuff
+            
         };
 
         function getStuff() {

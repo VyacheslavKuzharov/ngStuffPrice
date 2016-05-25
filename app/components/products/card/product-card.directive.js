@@ -9,20 +9,21 @@
         return {
             templateUrl: "app/components/products/card/product-card.tpl.html",
             scope: {
-                products: '=products',
-                productsFilter: '=productsFilter',
-                category: '=category'
+                products: '=',
+                productsFilter: '=',
+                category: '='
             },
             controller: productCardController,
             controllerAs: 'stuffCtrl'
         };
 
-        function productCardController($scope, $timeout, $mdDialog, $mdToast, $state, productService, authService) {
+        function productCardController($scope, $timeout, $mdDialog, $mdToast, $state, productService, authService, jwtHelper, store) {
             
             var vm = this;
             vm.editProduct = editProduct;
             vm.deleteProduct = deleteProduct;
-            vm.authService = authService
+            vm.authService = authService;
+            vm.isCardOwner = isCardOwner;
 
             $timeout(function () {
                 vm.products = $scope.products
@@ -59,6 +60,16 @@
                         .position('top', 'right')
                         .hideDelay(3000)
                 );
+            }
+
+            function isCardOwner(contactId) {
+                var currentUserId = jwtHelper.decodeToken(store.get('id_token')).user_id;
+
+                if(contactId === currentUserId){
+                    return true
+                } else{
+                    return false
+                }
             }
             
         }

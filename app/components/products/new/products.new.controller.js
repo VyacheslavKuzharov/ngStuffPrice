@@ -5,9 +5,9 @@
         .module('ngStuffPrice')
         .controller('newProductsController', newProductsController);
 
-    newProductsController.$inject = ['$scope', '$mdSidenav', '$mdDialog', '$timeout', '$state', 'productService'];
+    newProductsController.$inject = ['$scope', '$mdSidenav', '$mdDialog', '$timeout', '$state', 'store', 'productService', 'jwtHelper'];
     
-    function newProductsController($scope, $mdSidenav, $mdDialog, $timeout, $state, productService) {
+    function newProductsController($scope, $mdSidenav, $mdDialog, $timeout, $state, store, productService, jwtHelper) {
         var vm = this;
         vm.closeSidebar = closeSidebar;
         vm.saveProduct = saveProduct;
@@ -31,7 +31,7 @@
 
         function saveProduct(product) {
             if(product){
-                product.user_id = 1;
+                product.user_id = jwtHelper.decodeToken(store.get('id_token')).user_id;
                 $scope.$emit('newProduct', product);
                 vm.sidenaveOpen = false;
             }

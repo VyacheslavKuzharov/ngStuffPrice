@@ -7,7 +7,7 @@
 
         <div class="product-info" ng-show="!showContact">
             <h2 class="md-title">{{ product.title }}</h2>
-            <h2>{{ product.posted | date: 'longDate' }}</h2>
+            <h2>{{ product.created_at | date: 'longDate' }}</h2>
             <h3>{{ product.price | currency }}</h3>
             <p>{{ product.description }}</p>
         </div>
@@ -26,9 +26,13 @@
         </div>
 
         <div class="admin-product" ng-if="showAdmin">
-            <div layout="row" ng-if="stuffCtrl.authService.isAuth()">
+            <div layout="row" ng-if="stuffCtrl.authService.isAuth() && stuffCtrl.isCardOwner(product.contact.id)">
                 <md-button class="md-primary" ng-click="stuffCtrl.editProduct(product)">Edit</md-button>
                 <md-button class="md-warn" ng-click="stuffCtrl.deleteProduct($event, product)">Delete</md-button>
+            </div>
+
+            <div layout="row" ng-if="stuffCtrl.authService.isAuth() && !stuffCtrl.isCardOwner(product.contact.id)">
+                <h3>You can't edit this card</h3>
             </div>
 
             <div layout="row" ng-if="!stuffCtrl.authService.isAuth()">

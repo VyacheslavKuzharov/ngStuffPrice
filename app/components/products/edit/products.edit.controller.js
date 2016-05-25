@@ -12,6 +12,7 @@
         vm.closeSidebar = closeSidebar;
         vm.saveEdit = saveEdit;
         vm.product = $state.params.product;
+        vm.productService = productService;
 
         $timeout(function () {
             $mdSidenav('left').open();
