@@ -4,16 +4,25 @@ angular
         '$stateProvider',
         '$httpProvider',
         '$urlRouterProvider',
-        '$mdThemingProvider', function(
+        '$mdThemingProvider',
+        'jwtInterceptorProvider', function(
             $stateProvider,
             $httpProvider,
             $urlRouterProvider,
-            $mdThemingProvider){
+            $mdThemingProvider,
+            jwtInterceptorProvider){
 
         $mdThemingProvider.theme('default')
             .primaryPalette('teal')
             .accentPalette('orange');
 
+
+
+        jwtInterceptorProvider.tokenGetter = function(store) {
+            return store.get('id_token');
+        };
+
+            
         // any unknown URLS go to 404
         $urlRouterProvider.otherwise('/');
 
@@ -50,4 +59,6 @@ angular
                     product: null
                 }
             });
+
+        $httpProvider.interceptors.push('jwtInterceptor');
     }]);

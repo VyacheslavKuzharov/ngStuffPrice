@@ -21,7 +21,7 @@
             vm.openSidebar = openSidebar;
             vm.openLogin = openLogin;
             vm.logout = logout;
-            vm.isCurrentUser = isCurrentUser;
+            vm.isAuthenticated = isAuthenticated;
 
             $timeout(function () {
                 vm.categories = $scope.categories
@@ -49,14 +49,15 @@
                 authService.logout().then(function (response) {
                     if(response.status == 204){
                         store.remove('current_user');
+                        store.remove('id_token');
                         $location.path('/');
                     }
                     console.log(response)
                 })
             }
 
-            function isCurrentUser() {
-               return authService.userSignedIn()
+            function isAuthenticated() {
+               return authService.isAuth()
             }
             
         }

@@ -1,7 +1,8 @@
 <div class="md-toolbar-tools">
     <p><strong>ngStuffPrice</strong></p>
 
-    <md-button ng-click="toolbarCtrl.openSidebar()">
+    <md-button ng-click="toolbarCtrl.openSidebar()"
+               ng-if="toolbarCtrl.isAuthenticated()">
         <md-icon class="mdi mdi-plus-circle"></md-icon>
         New Post
     </md-button>
@@ -15,13 +16,13 @@
 
     <md-button aria-label="Login"
                ng-click="toolbarCtrl.openLogin($event)"
-               ng-if="!toolbarCtrl.isCurrentUser()">
+               ng-if="!toolbarCtrl.isAuthenticated()">
         Login
     </md-button>
 
     <md-button aria-label="Logout"
                ng-click="toolbarCtrl.logout()"
-               ng-if="toolbarCtrl.isCurrentUser()">
+               ng-if="toolbarCtrl.isAuthenticated()">
         Logout
     </md-button>
 

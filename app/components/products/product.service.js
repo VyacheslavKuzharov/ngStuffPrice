@@ -15,19 +15,19 @@
         };
 
         function getStuff() {
-           return $http.get(CONFIG.APIHost + '/products')
+           return $http.get(CONFIG.APIHost + '/api/products')
         }
 
         function saveStuff(product) {
-            return $http.post(CONFIG.APIHost + '/products', {product: product})
+            return $http.post(CONFIG.APIHost + '/api/products', {product: product})
         }
 
         function editStuff(product) {
-            return $http.put(CONFIG.APIHost + '/products/' + product.id, {product: product})
+            return $http.put(CONFIG.APIHost + '/api/products/' + product.id, {product: product})
         }
 
         function destroyStuff(id) {
-            return $http.delete(CONFIG.APIHost + '/products/' + id)
+            return $http.delete(CONFIG.APIHost + '/api/products/' + id)
         }
     }
 

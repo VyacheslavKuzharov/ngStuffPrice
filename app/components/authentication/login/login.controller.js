@@ -21,7 +21,9 @@
         function loginSubmit(user_credentials) {
             closeLogin();
             authService.login(user_credentials).then(function (response) {
-                store.set('current_user', {id:response.data.id, email: response.data.email});
+                console.log(response)
+                store.set('current_user', {id: response.data.id, email: response.data.email});
+                store.set('id_token', response.data.token);
                 $location.path('/');
             }, function (error) {
                 console.log(error.data)
