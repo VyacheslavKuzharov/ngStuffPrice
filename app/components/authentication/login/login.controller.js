@@ -12,6 +12,7 @@
         vm.closeLogin = closeLogin;
         vm.loginSubmit = loginSubmit;
         vm.registerOpen = registerOpen;
+        vm.loginErrorMsg
 
 
         function closeLogin() {
@@ -19,14 +20,14 @@
         }
         
         function loginSubmit(user_credentials) {
-            closeLogin();
             authService.login(user_credentials).then(function (response) {
-                console.log(response)
+                closeLogin();
                 store.set('current_user', {id: response.data.id, email: response.data.email});
                 store.set('id_token', response.data.token);
                 $location.path('/');
-            }, function (error) {
-                console.log(error.data)
+            }, function (response) {
+                vm.loginErrorMsg = response.data.error
+                vm.showError = true;
             })
         }
         

@@ -2,6 +2,7 @@ angular
     .module('ngStuffPrice', [
         'ngMaterial',
         'ui.router',
+        'ngMessages',
         'angular-storage',
         'angular-jwt'
     ])

@@ -1,6 +1,9 @@
 button .material-icons {
     margin-top: 7px;
 }
+.error-msg{
+    color: red;
+}
 
 /* --ngAnimation-- */
 .products.ng-enter, .products.ng-move{

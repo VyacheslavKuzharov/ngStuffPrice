@@ -12,6 +12,8 @@
         vm.closeRegister = closeRegister;
         vm.registerSubmit = registerSubmit;
         vm.loginOpen = loginOpen;
+
+        vm.RegErrorMsg
         
         
         function closeRegister() {
@@ -19,13 +21,14 @@
         }
         
         function registerSubmit(user_credentials) {
-            closeRegister();
             authService.register(user_credentials).then(function (response) {
+                closeRegister();
                 store.set('current_user', {id:response.data.id, email: response.data.email});
                 store.set('id_token', response.data.token);
                 $location.path('/');
-            }, function (error) {
-                console.log(error.data)
+            }, function (response) {
+                vm.RegErrorMsg = response.data.errors.password_confirmation[0];
+                vm.showRegError = true;
             })
         }
         
