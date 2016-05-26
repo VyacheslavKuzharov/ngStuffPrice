@@ -10,5 +10,4 @@ angular
     .constant('CONFIG',
     {
         APIHost: 'https://stuffprice-backend.herokuapp.com'
-        // APIHost: 'http://localhost:3000'
     });

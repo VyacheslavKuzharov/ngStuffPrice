@@ -18,9 +18,6 @@ angular
             .primaryPalette('teal')
             .accentPalette('orange');
 
-        $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-        $locationProvider.html5Mode(true);
-
         jwtInterceptorProvider.tokenGetter = function(store) {
             return store.get('id_token');
         };
