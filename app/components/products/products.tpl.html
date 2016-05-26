@@ -28,9 +28,19 @@
 <md-content>
     <product-card products='stuffCtrl.products'
                   products-filter="productsFilter"
+                  total-items="stuffCtrl.totalItems"
                   category="category"
                   class="md-padding"
                   layout="row"
                   layout-wrap>
     </product-card>
+
+    <uib-pagination ng-model="stuffCtrl.CurrentPage"
+                    total-items="stuffCtrl.totalItems"
+                    max-size="stuffCtrl.maxSize"
+                    ng-change="stuffCtrl.pageChanged()"
+                    boundary-link-numbers="true"
+                    rotate="false"
+                    class="pagination-sm">
+    </uib-pagination>
 </md-content>

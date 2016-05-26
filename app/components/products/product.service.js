@@ -15,8 +15,8 @@
             
         };
 
-        function getStuff() {
-           return $http.get(CONFIG.APIHost + '/api/products')
+        function getStuff(page) {
+           return $http.get(CONFIG.APIHost + '/api/products', {params:{page: page}})
         }
 
         function saveStuff(product) {

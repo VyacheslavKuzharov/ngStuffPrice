@@ -11,7 +11,8 @@
             scope: {
                 products: '=',
                 productsFilter: '=',
-                category: '='
+                category: '=',
+                totalItems: '='
             },
             controller: productCardController,
             controllerAs: 'stuffCtrl'
@@ -26,7 +27,7 @@
             vm.isCardOwner = isCardOwner;
 
             $timeout(function () {
-                vm.products = $scope.products
+                vm.products = $scope.products;
             }, 1000 );
 
             function editProduct(product) {
@@ -37,6 +38,7 @@
             }
 
             function deleteProduct(event, product) {
+
                 var confirm = $mdDialog.confirm()
                     .title('Are you shure?')
                     .ok('yes')
@@ -47,7 +49,10 @@
 
                     var index = vm.products.indexOf(product);
                     vm.products.splice(index, 1);
+                    vm.totalItems = vm.totalItems - 1;
+                    console.log(vm.totalItems)
                     showToast('Deleted!')
+
                 }, function () {
 
                 });

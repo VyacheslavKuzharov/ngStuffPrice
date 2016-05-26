@@ -3,11 +3,13 @@ angular
     .config([
         '$stateProvider',
         '$httpProvider',
+        '$locationProvider',
         '$urlRouterProvider',
         '$mdThemingProvider',
         'jwtInterceptorProvider', function(
             $stateProvider,
             $httpProvider,
+            $locationProvider,
             $urlRouterProvider,
             $mdThemingProvider,
             jwtInterceptorProvider){
@@ -16,23 +18,15 @@ angular
             .primaryPalette('teal')
             .accentPalette('orange');
 
-
+        $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+        $locationProvider.html5Mode(true);
 
         jwtInterceptorProvider.tokenGetter = function(store) {
             return store.get('id_token');
         };
 
             
-        // any unknown URLS go to 404
         $urlRouterProvider.otherwise('/');
-
-        // $httpProvider.defaults.headers.common = {
-        //     'Content-Type': 'application/json',
-        //     'Accept': 'application/json'
-        // };
-        //
-        // $httpProvider.defaults.useXDomain = true;
-        // delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
         $stateProvider
             .state('products', {
@@ -58,6 +52,12 @@ angular
                 params: {
                     product: null
                 }
+            })
+            .state('pagin', {
+                url: '/products?page',
+                templateUrl: 'app/components/products/products.tpl.html',
+                controller: 'productsController',
+                controllerAs: 'stuffCtrl'
             });
 
         $httpProvider.interceptors.push('jwtInterceptor');

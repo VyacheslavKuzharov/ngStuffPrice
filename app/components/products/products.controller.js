@@ -5,23 +5,31 @@
         .module('ngStuffPrice')
         .controller('productsController', productsController);
 
-    productsController.$inject = ['$scope', '$mdSidenav', '$mdToast', '$mdDialog', '$state', 'productService'];
+    productsController.$inject = ['$scope', '$mdSidenav', '$mdToast', '$mdDialog', '$state','$stateParams', '$location', 'productService'];
 
-    function productsController($scope, $mdSidenav, $mdToast, $mdDialog, $state, productService) {
+    function productsController($scope, $mdSidenav, $mdToast, $mdDialog, $state, $stateParams, $location, productService) {
         var vm = this;
         vm.showFilters = showFilters;
+        vm.pageChanged = pageChanged;
 
         vm.products;
         vm.categories;
+        vm.maxSize = 5;
+        vm.CurrentPage = $stateParams.page || 1;
 
         $scope.$on('newProduct', function (event, product) {
             productService.storeProduct(product).then(function (response) {
                 vm.products.unshift(response.data);
+                vm.totalItems = vm.totalItems + 1;
             });
             showToast('Saved!')
         });
 
-        productService.getProducts().then(function (response) {
+        productService.getProducts(vm.CurrentPage).then(function (response) {
+            var productAry = response.data;
+            vm.totalItems = productAry[productAry.length - 1].products_count;
+
+            productAry.pop();
             vm.products = response.data;
             vm.categories = getCategories(vm.products);
         });
@@ -47,6 +55,10 @@
                 });
             });
             return _.uniq(categories);
+        }
+
+        function pageChanged() {
+            $location.url('/products?page=' + vm.CurrentPage)
         }
 
         return vm;

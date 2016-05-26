@@ -4,7 +4,8 @@ angular
         'ui.router',
         'ngMessages',
         'angular-storage',
-        'angular-jwt'
+        'angular-jwt',
+        'ui.bootstrap'
     ])
     .constant('CONFIG',
     {
